@@ -4,7 +4,7 @@ project(ImgLib CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 # добавляем новую переменную - путь к LibJPEG
-set(LIBJPEG_DIR CACHE STRING "LibJPEG static library directory")
+set(LIBJPEG_DIR PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../LibJPEG/sln/libjpeg")
 if(NOT LIBJPEG_DIR)
     message(FATAL_ERROR "Please, specify LibJPEG directory via -DLIBJPEG_DIR=<dir>")
 endif()

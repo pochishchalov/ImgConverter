@@ -86,7 +86,7 @@ namespace img_lib {
         * requires it in order to write binary files.
         */
 #ifdef _MSC_VER
-        if ((outfile = _wfopen(file.wstring().c_str(), "wb")) == NULL) {
+        if ((outfile = _wfopen(file.wstring().c_str(), L"wb")) == NULL) {
 #else
         if ((outfile = fopen(file.string().c_str(), "wb")) == NULL) {
 #endif
@@ -179,7 +179,7 @@ namespace img_lib {
         // Под Visual Studio это может быть опасно, и нужно применить
         // нестандартную функцию _wfopen
 #ifdef _MSC_VER
-        if ((infile = _wfopen(file.wstring().c_str(), "rb")) == NULL) {
+        if ((infile = _wfopen(file.wstring().c_str(), L"rb")) == NULL) {
 #else
         if ((infile = fopen(file.string().c_str(), "rb")) == NULL) {
 #endif

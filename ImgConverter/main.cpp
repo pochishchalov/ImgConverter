@@ -71,14 +71,14 @@ ImageFormatInterface* GetFormatInterface(const img_lib::Path& path) {
     const auto format = GetFormatByExtension(path);
     switch (format)
     {
-    case Format::UNKNOWN:
-        return nullptr;
     case Format::JPEG:
         return new JPEGInterface;
     case Format::PPM:
         return new PPMInterface;
     case Format::BMP:
         return new BMPInterface;
+    default:
+        return nullptr;
     }
 }
 

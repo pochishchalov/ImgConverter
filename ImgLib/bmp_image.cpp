@@ -55,29 +55,29 @@ bool SaveBMP(const Path& file, const Image& image) {
     // Отступ данных от начала файла
     uint32_t off_bits = sizeof(BitmapFileHeader) + sizeof(BitmapInfoHeader);
 
-    BitmapFileHeader file_header{
-        .bf_type = 0x4d42, // строка ASCII "BM"
-        .bf_size = off_bits + image_size,
-        .bf_reserved_1 = 0,
-        .bf_reserved_2 = 0,
-        .bf_off_bits = off_bits
-    };
+    BitmapFileHeader file_header;
+
+    file_header.bf_type = 0x4d42; // строка ASCII "BM"
+    file_header.bf_size = off_bits + image_size;
+    file_header.bf_reserved_1 = 0;
+    file_header.bf_reserved_2 = 0;
+    file_header.bf_off_bits = off_bits;
 
     out.write((char*)&file_header, sizeof(BitmapFileHeader));
 
-    BitmapInfoHeader info_header{
-        .bi_size = sizeof(BitmapInfoHeader),
-        .bi_width = image.GetWidth(),
-        .bi_height = image.GetHeight(),
-        .bi_planes = 1,
-        .bi_bit_count = 24,
-        .bi_compression = 0,
-        .bi_size_image = image_size,
-        .bi_x_pels_per_meter = DPI_300,
-        .bi_y_pels_per_meter = DPI_300,
-        .bi_clr_used = 0,
-        .bi_clr_important = 0x1000000
-    };
+    BitmapInfoHeader info_header;
+
+    info_header.bi_size = sizeof(BitmapInfoHeader);
+    info_header.bi_width = image.GetWidth();
+    info_header.bi_height = image.GetHeight();
+    info_header.bi_planes = 1;
+    info_header.bi_bit_count = 24;
+    info_header.bi_compression = 0;
+    info_header.bi_size_image = image_size;
+    info_header.bi_x_pels_per_meter = DPI_300;
+    info_header.bi_y_pels_per_meter = DPI_300;
+    info_header.bi_clr_used = 0;
+    info_header.bi_clr_important = 0x1000000;
 
     out.write((char*)&info_header, sizeof(BitmapInfoHeader));
 
